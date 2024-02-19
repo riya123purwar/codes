@@ -1,0 +1,85 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <string>
+#include<vector>
+using namespace std;
+
+void merge_both_array(vector<int> &arr, int s, int e){
+    int i=0;
+    int mid= s+e/2;
+    int j= mid+1;
+    // int mid= s+e/2;
+    vector<int> temp;
+     while(i<= mid && j<=e){
+         if(arr[i]<arr[j]){
+            temp.push_back(arr[i]);
+            i++;
+         }
+         
+         else{
+             temp.push_back(arr[j]);
+             j++;
+         }
+     }
+     
+     while(i<= mid){
+         temp.push_back(arr[i]);
+         i++;
+     }
+     
+     while(j<= e){
+         temp.push_back(arr[j]);
+         j++;
+     }
+     
+     // copyin array
+     int k=0;
+     for(int i=s;i<e;i++){
+         arr[i]= temp[k++];
+     }
+}
+
+void merge(vector<int> &arr, int s, int e){
+    // base case
+    if(s>=e){
+        return ;
+    }
+    
+    int mid= s+e/2;
+    // left std::array 
+    merge(arr, s, mid);
+    
+    // ryt hand side
+    merge(arr, mid+1, e);
+    
+    merge_both_array(arr, s, e);
+    
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    vector<int> arr(n);
+    
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    
+    int s=0;int e=n-1;
+    merge(arr, s, e);
+    
+    for( int x: arr){
+        cout<<x<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+}
