@@ -28,7 +28,7 @@ void merge_both_array(vector<int> &arr, int s, int e){
              j++;
          }
      }
-     
+     // copyin array
      while(i<= mid){
          temp.push_back(arr[i]);
          i++;
@@ -39,7 +39,7 @@ void merge_both_array(vector<int> &arr, int s, int e){
          j++;
      }
      
-     // copyin array
+     // updating array
      int k=0;
      for(int i=s;i<e;i++){
          arr[i]= temp[k++];
