@@ -1,0 +1,56 @@
+// int count=0;
+// using namespace std;
+int merge_both(vector<int> &arr, int s, int e){
+    int i=s;
+    int mid= s+ (e-s)/2;
+    int j= mid+1;
+    vector<int> temp;
+    int count =0;
+    while(i<= mid && j<= e){
+        if(arr[i]<=arr[j]){
+            temp.push_back(arr[i]);
+        i++;
+        }// ryt is smaller
+        else{
+            temp.push_back(arr[j]);
+            count += (mid-i+1);
+            j++;
+        }
+    }
+
+    while(i<= mid){
+        temp.push_back(arr[i]);
+        i++;
+    }
+
+    while(j<= e){
+        temp.push_back(arr[j]);
+        j++;
+    }
+
+    int k=0;
+    for(int i=s; i<=e;i++){
+        arr[i]= temp[k++];
+    }
+    return count;
+}
+
+int mergesort(vector<int> &arr, int s, int e){
+    int count =0;
+    // base case
+    if(s>=e){
+        return count ;
+    }
+    int mid= s+ (e-s)/2;
+    //left side
+     count += mergesort(arr, s, mid);
+    // ryt side
+    count += mergesort(arr, mid+1,e);
+    //mergin of both arrays
+     count += merge_both(arr, s, e);
+     return count;
+}
+
+int numberOfInversions(vector<int>&a, int n) {
+     return mergesort(a, 0, n-1);
+}
