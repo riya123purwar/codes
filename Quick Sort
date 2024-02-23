@@ -1,0 +1,77 @@
+// Example program
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+int partition(int arr[], int s,int e){
+int cnt=0;
+int pivot= arr[s];
+for(int i=s+1;i<=e;i++)
+    {
+    if(arr[i]<=pivot)
+    cnt++;//finding the actual position
+    }
+    
+    int actualposition= s+cnt;
+    swap(arr[actualposition], arr[s]);// pivot pt is at ryt place
+    
+    //v'll chk < or > condition mtlb ki ryt or left wala part smbhaalte h
+    
+    int i=s,j=e;
+    while(i < actualposition && j > actualposition){
+        while(arr[i] <= pivot){
+            i++;
+        }
+          
+        while(arr[j] > pivot){
+            j++;
+        }
+        if(i < actualposition && j > actualposition){
+        swap(arr[i++], arr[j--]);
+        }
+            
+    }
+    
+    return actualposition;
+    
+    
+}
+
+void quick_sort(int arr[], int s, int e){
+//base case
+if(s>=e){
+    return ;
+    }
+    
+    int p= partition(arr, s, e);
+    
+    //left wala part
+    quick_sort(arr, s ,p-1);
+    
+    //ryt wala part
+    quick_sort(arr, p+1, e);
+}
+
+// int arr[]= {3,1,4,5,2};
+// int n=5;
+int main()
+{
+    int n;
+    cin>>n;
+    int arr[n];
+    
+    for(int i=0;i<n;i++){
+        cin>>arr[i];
+    }
+    
+    int s=0;int e=n-1;
+    quick_sort(arr, s, e);
+    
+    for( int x: arr){
+        cout<<x<<" ";
+    }
+    cout<<endl;
+
+    return 0;
+}
