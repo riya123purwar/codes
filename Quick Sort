@@ -25,7 +25,7 @@ for(int i=s+1;i<=e;i++)
         }
           
         while(arr[j] > pivot){
-            j++;
+            j--;
         }
         if(i < actualposition && j > actualposition){
         swap(arr[i++], arr[j--]);
