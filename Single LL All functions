@@ -1,0 +1,134 @@
+#include <iostream>
+using namespace std;
+
+class Node
+{
+  public:
+  int data;
+  Node* next;
+  
+  //constructor
+  Node(int data){
+      this->data = data;
+      this-> next = NULL;
+  }
+  
+  //destructor
+  ~Node(){
+      int value= this->data;
+      //memory free
+      if(this->next!=NULL){
+          delete next;
+          this->next=NULL;
+      }
+      cout<<"memory is free for node with data "<<value<<endl;
+  }
+  
+};
+
+void insert(Node* &head, int d){
+    //create a new node i.e temp 
+    Node* temp= new Node(d);
+    temp->next= head;
+    head= temp;
+}
+
+void insert_tail(Node* &tail, int d){
+    // create a new Node
+    Node *temp= new Node(d);
+    tail->next= temp;
+    tail= tail-> next;
+}
+
+void insertatposition(Node* &tail, Node* &head, int position, int data){
+    
+    // v want to insert no at 1st place
+    if(position==1){
+        insert(head, data);
+        return;
+    }
+    
+    Node *temp = head;
+    int cnt = 1;
+    
+    while(cnt < position-1){
+        temp = temp->next;
+        cnt++;
+    }
+    
+    // v want to insert at last position , it is possible but tail will not get updated
+    if(temp->next == NULL){
+        insert_tail(tail,data);
+        return;
+    }
+    
+    //create a Node for data
+    Node *nodetoinsert= new Node(data);
+    nodetoinsert -> next= temp -> next;
+    temp -> next = nodetoinsert;
+}
+
+void print(Node* &head){
+    Node* temp= head;
+    while(temp!=NULL){
+        cout<<temp->data<<" ";
+        temp= temp->next;
+    }
+    
+    cout<<endl;
+}
+
+void deletenode(int position, Node* &head){
+    // deleting first or starting node
+    if(position==1){
+        Node* temp= head;
+        head=head->next;
+        // memory free
+        temp->next=NULL;// kyuki humne iske next mtlb add wale part ko free nhi kia h 
+        delete temp;
+    }
+    else{
+        Node * curr= head;
+        Node* prev = NULL;
+        int cnt=1;
+        // deleting any middle or last node
+        while(cnt<position){
+            prev= curr;
+            curr=curr->next;// kyuki humne iske next mtlb add wale part ko free nhi kia h 
+            cnt++;
+        }
+        
+        prev->next=curr->next;
+        curr->next=NULL;
+        delete curr;
+    }
+}
+
+int main()
+{
+    //created a new node
+  Node* node1= new Node(5);
+   
+    // cout<<node1->data<<endl;
+    // cout<<node1->next<<endl;
+    
+    //head pointed 2wards node1(newly created node)
+    Node* head= node1;
+    Node* tail= node1;
+    print(head);
+    insert(head, 12);
+    print(head);
+    insert_tail(tail, 4);
+    print(head);
+    // insertatposition(head,4,56);
+    // print(head);
+    insert_tail(tail, 2);
+    print(head);
+    insertatposition(tail,head,5,56);
+    print(head);
+    cout<<"head "<< head->data<<endl;
+    cout<<"tail "<< tail->data<<endl;
+    deletenode(5, head);
+    print(head);
+    return 0;
+}
