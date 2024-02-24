@@ -26,7 +26,7 @@ class Node
   
 };
 
-void insert(Node* &head, int d){
+void insert_head(Node* &head, int d){
     //create a new node i.e temp 
     Node* temp= new Node(d);
     temp->next= head;
@@ -44,7 +44,7 @@ void insertatposition(Node* &tail, Node* &head, int position, int data){
     
     // v want to insert no at 1st place
     if(position==1){
-        insert(head, data);
+        insert_head(head, data);
         return;
     }
     
@@ -116,7 +116,7 @@ int main()
     Node* head= node1;
     Node* tail= node1;
     print(head);
-    insert(head, 12);
+    insert_head(head, 12);
     print(head);
     insert_tail(tail, 4);
     print(head);
