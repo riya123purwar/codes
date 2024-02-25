@@ -44,7 +44,7 @@ if(s>=e){
     return ;
     }
     
-    int p= partition(arr, s, e);
+    int p= partition(arr, s, e);//{pivot pt nikaal skte h}
     
     //left wala part
     quick_sort(arr, s ,p-1);
