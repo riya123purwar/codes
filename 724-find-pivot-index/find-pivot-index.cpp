@@ -20,7 +20,23 @@ public:
         return -1;
     }
 
+    int prefixsum(vector<int>& nums){
+        int n= nums.size();
+        vector<int>ls(nums.size(),0);
+        vector<int>rs(nums.size(),0);
+        for(int i=1;i<n;i++){
+            ls[i]= nums[i-1]+ls[i-1];
+        }
+        for(int i=n-2;i>=0;i--){
+            rs[i]= nums[i+1]+ rs[i+1];
+        }
+        for(int i=0;i<n;i++){
+            if(ls[i]==rs[i]) return i;
+        }
+        return -1;
+    }
+
     int pivotIndex(vector<int>& nums) {
-        return bruteforce(nums);
+        return prefixsum(nums);
     }
 };
