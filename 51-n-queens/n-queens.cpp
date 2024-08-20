@@ -21,7 +21,7 @@ void storesol(vector<vector<string>> &ans,vector<vector<char>> &board,int n){
 
 }
 
-bool isSafe(int row, int col,vector<vector<char>> &board ){
+bool isSafe(int row, int col ){
     //chk row wise
     if(row_chk[row]==true)
     //nt safe
@@ -55,7 +55,7 @@ void solve(int n,vector<vector<string>> &ans,vector<vector<char>> &board,int col
     //how will I decide that ..by chking if its safe or nt
     for(int row=0;row<n;row++){
         //har row m queen ko place krkr dekhenge ki wo safe h ya nhi
-        if(isSafe(row,col,board)){
+        if(isSafe(row,col)){
             board[row][col]='Q';
             row_chk[row]=true;
             lowerD_chk[row+col] = true;
