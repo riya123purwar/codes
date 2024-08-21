@@ -40,10 +40,7 @@ ListNode* getrev(ListNode* &curr, ListNode* &prev){
 
     bool isPalindrome(ListNode* head) {
         //exceptions or likhne h
-        if(head == nullptr){
-            //LL empty h
-            return true;
-        }
+        
         if(head->next == nullptr){
             //single LL
             return true;
