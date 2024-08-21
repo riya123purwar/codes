@@ -10,17 +10,22 @@ public:
         // return -1;
 
         //visited wala case lia h
-        int ans=-1;
-        for(int i=0;i<nums.size();i++){
-            int index= abs(nums[i]);
-            if(nums[index]<1){
-                ans=index;
-                break;
-            }
-            else{
-                nums[index] *= -1;
-            }
+        // int ans=-1;
+        // for(int i=0;i<nums.size();i++){
+        //     int index= abs(nums[i]);
+        //     if(nums[index]<1){
+        //         ans=index;
+        //         break;
+        //     }
+        //     else{
+        //         nums[index] *= -1;
+        //     }
+        // }
+        // return ans;
+        //positioning method
+        while(nums[0]!= nums[nums[0]]){
+            swap(nums[0],nums[nums[0]]);
         }
-        return ans;
+        return nums[0];
     }
 };
