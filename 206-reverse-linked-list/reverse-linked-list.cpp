@@ -11,27 +11,41 @@
 class Solution {
 public:
 
-    ListNode* reverseLL(ListNode* &prev, ListNode* &curr){
-        //base case
-        if(curr== NULL){
-            //node reverese ho chuki h 
-            //rev node ki starting pr prev wala ptr h
-            return prev;
-        }
-        ListNode* forward= curr->next;
-        //curr ko peeche wali disha m pt krwaya
-        curr->next = prev;
-        prev= curr;
-        curr= forward;
+    // ListNode* reverseLL(ListNode* &prev, ListNode* &curr){
+    //     //base case
+    //     if(curr== NULL){
+    //         //node reverese ho chuki h 
+    //         //rev node ki starting pr prev wala ptr h
+    //         return prev;
+    //     }
+    //     ListNode* forward= curr->next;
+    //     //curr ko peeche wali disha m pt krwaya
+    //     curr->next = prev;
+    //     prev= curr;
+    //     curr= forward;
 
-        return reverseLL(prev,curr);
-    }
+    //     return reverseLL(prev,curr);
+    // }
 
     ListNode* reverseList(ListNode* head) {
+        ListNode* prev= NULL;
+        ListNode* curr= head;
+        while(curr!= NULL){
+            ListNode* forward= curr->next;
+            curr->next = prev;
+            prev= curr;
+            curr= forward;
+            }
+        return prev;
+
+
+
+
+
         //step1: naming of prev, curr, forward
-        ListNode* prev = NULL;
-        ListNode* curr = head;
-        ListNode* newhead= reverseLL(prev,curr);
-        return newhead;
+        // ListNode* prev = NULL;
+        // ListNode* curr = head;
+        // ListNode* newhead= reverseLL(prev,curr);
+        // return newhead;
     }
 };
