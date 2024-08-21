@@ -29,14 +29,14 @@ public:
                 prev->next= temp->next;
                 temp->next= NULL;
                 delete temp; 
-                temp= prev->next;
+                // temp= prev->next;
                 }
                 else{
                     //duplicate nhi mila
                     prev= prev->next;
                     temp= temp->next;
                 }
-                
+                temp= prev->next;
             }
             return head;
             
