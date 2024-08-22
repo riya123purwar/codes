@@ -1,51 +1,36 @@
 class Solution {
 public:
-    bool isValid(string s){
-      stack<char> st;
-      // '(',')','[',']','{','}'
-
-      for(char ch:s){
-
-        switch(ch){
-            case '(':
-              st.push(ch);
-              break;
-
-            case '{':
-              st.push(ch);
-              break;
-
-            case '[':
-              st.push(ch);
-              break;
-
-            case ')':
-            if(!st.empty()&& st.top()=='(')
-                st.pop();
-            else
-              return false;
-            break; 
-
-            case '}':
-            if(!st.empty()&& st.top()=='{')
-                st.pop();
-            else
-                return false;
-            break;
-
-            case ']':
-            if(!st.empty()&& st.top()=='[')
-                st.pop();
-            else
-                return false;
-            break;
+    bool isValid(string s) {
+        stack<char>st;
+        for(int i=0;i<s.length();i++){
+            char ch = s[i];
+        
+        //mere pass 2 cases h 
+        //open bracket aata h to->stack m push krdia jaye
+        //closed bracket aarha h to-> chk kia jaye ki st.top barabar h ya nhi
+        if(ch == '('|| ch == '{' || ch == '['){
+            st.push(ch);
         }
-
-    }
-if(st.empty()) return true;
-else return false;
+        else{
+            if(!st.empty() && st.top()=='(' && ch == ')'){
+                st.pop();
+            }
+            else if(!st.empty() && st.top ()== '{' && ch == '}'){
+                st.pop();
+            }
+            else if(!st.empty() && st.top() == '[' && ch == ']'){
+                st.pop();
+            }
+            else{
+                return false;
+            } 
+        }
+        }
+        if(st.size()==0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 };
-// int main(){
-//     return 0;
-// }
