@@ -20,9 +20,10 @@ bool isvowel(string s, char c){
             e--;
         }
         if(isvowel(s,s[st]) && isvowel(s,s[e])){
-            temp = s[st];
-            s[st]= s[e];
-            s[e]= temp;
+            // temp = s[st];
+            // s[st]= s[e];
+            // s[e]= temp;
+            swap(s[st],s[e]);
             st++;
             e--;
         }
