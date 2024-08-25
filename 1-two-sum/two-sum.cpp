@@ -1,41 +1,31 @@
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        // int n= nums.size();
-        // vector<int> ans;
-        // for(int i=0;i<n;i++){
-        //     for (int j=i+1;j<n;j++){
-        //         if(nums[i]+ nums[j]==target)
-        //         {
-        //             ans.push_back(i);
-        //             ans.push_back(j);
-        //             return ans;
-        //         }
-        //     }
-        // }
-        // return ans;
         int n= nums.size();
         vector<pair<int,int>>pair;
+        // vector<int>csum;
+        //pushing values in pair
         for(int i=0;i<n;i++){
-            pair.push_back({nums[i], i});
+            pair.push_back({nums[i],i});
         }
-        //sbse pehle arrange krte h ascending ordr m
+        //arranging in ascending ordr
         sort(pair.begin(), pair.end());
-        int low=0;
-        int hy=n-1;
-        while(low<hy){
-            int csum= pair[low].first+ pair[hy].first;
-            if(csum == target){
-                // cout<<low<<hy;
-                return {pair[low].second, pair[hy].second};
+        //2ptr approach
+        int l=0;
+        int h=n-1;
+        while(l<h){
+            int csum = pair[l].first+pair[h].first;
+            if(csum==target){
+                return {pair[l].second,pair[h].second};
             }
-            else if(csum >target){
-                hy --;
+            else if(csum>target){
+                h--;
             }
             else{
-                low++;
+                l++;
             }
         }
-       return {};
+        return{};
+
     }
 };
