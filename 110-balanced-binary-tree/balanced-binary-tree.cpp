@@ -12,37 +12,25 @@
 class Solution {
 public:
 
-    int geth(TreeNode* root){
+    int geth(TreeNode* root,bool &isbal){
         if(root == NULL){
             return 0;
         }
-        int left = geth(root->left);
-        int right= geth(root->right);
+        int left = geth(root->left,isbal);
+        int right= geth(root->right,isbal);
+
+        if(isbal && abs(left-right)>1){
+            isbal= false;
+        }
+
         int maxi = max(left, right);
         return maxi+1;
     }
 
     bool isBalanced(TreeNode* root) {
-        if(root==NULL){
-            return true;
-        }
-
-        int lh = geth(root->left);
-        int rh = geth(root->right);
-        int absdiff = abs(lh-rh);
-        bool status = (absdiff <=1);
-
-        //baaki recursion dekh lega
-
-        int leftbal= isBalanced(root->left);
-        int rytbal = isBalanced(root->right);
-
-        if(status && leftbal && rytbal){
-            return true;
-        }
-        else{
-            return false;
-        }
-
+        bool isbal= true;
+        geth(root,isbal );
+        return isbal;
+        
     }
 };
