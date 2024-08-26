@@ -15,7 +15,7 @@ public:
         mid= s+(e-s)/2;
         }
 
-        return mid;
+        return s;
         
     }
 };
