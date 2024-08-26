@@ -23,7 +23,7 @@ public:
         // processing for remainig window
         for(int i=k;i<n;i++){
             //remove
-            if(!dq.empty() && dq.front() < i- k+1){
+            if(!dq.empty() &&   i-dq.front()>=k){
                 dq.pop_front();
             }
             //addition
