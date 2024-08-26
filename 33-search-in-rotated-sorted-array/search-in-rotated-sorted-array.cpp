@@ -12,9 +12,9 @@ int getpivot(vector<int>& nums){
         if(mid+1 < nums.size() && nums[mid]>nums[mid+1]){
             return mid;
         }
-        if(mid-1>0 && nums[mid]<nums[mid-1]){
-            return mid-1;
-        }
+        // if(mid-1>0 && nums[mid]<nums[mid-1]){
+        //     return mid-1;
+        // }
         //kaha jana h
         if(nums[s]>nums[mid]){
             e= mid-1;
