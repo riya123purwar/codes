@@ -1,26 +1,28 @@
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
-        int s=0;
-        int e= nums.size()-1;
-        int mid = (s+e)/2;
-        //base case
-        // if(s>e){
-        //     return -1;
-        // }
+        int n= nums.size();
+        int s= 0;
+        int e= n-1;
+        
         while(s<=e){
-            if(nums[mid]== target){
-                return mid;
+            int mid= (s+e)/2;
+            if(nums[mid] == target)
+            //agr hume target mill gya to hmne index return kia
+            return mid;
+            //hume right m jana h 
+            else if(target > nums[mid]){
+                 s= mid+1;
             }
-            else if(nums[mid]>target){
+           //left m jana h
+            else
+            {
                 e= mid-1;
             }
-            else{
-                s=mid+1;
-            }
-            mid= (s+e)/2;
+            //bhool jaati hu
+            // mid = (s+e)/2;
         }
-
+        //use kuch nhi mila mtlb use target nhi. mila
         return -1;
     }
 };
