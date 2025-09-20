@@ -1,10 +1,11 @@
 class Solution {
 public:
     int singleNumber(vector<int>& nums) {
-        int ans=0;
-        for(int i=0;i<nums.size();i++){
-            ans = ans^ nums[i];
+        int n = nums.size();
+        int unique = 0;
+        for(int i = 0;i<n;i++){
+            unique= unique^nums[i]; // 0^xor any no = that no ; a^ 0 = a;
         }
-        return ans;
+        return unique;
     }
 };
